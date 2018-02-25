@@ -6,8 +6,9 @@ test_script:
     VERSIONS["8"]="1.8.0"
     VERSIONS["9"]="9-internal"
     for v in "${JDK_VERSIONS[@]}"; do
-        sudo /usr/sbin/update-java-alternatives --set java-1.${v}.0-openjdk-amd64 ||
-            { echo "[ERROR] Cannot use JDK ${v}." 1>&2; exit 1; }
+        JVAR=JAVA_HOME_${v}_X64
+        export JAVA_HOME=${!JVAR}
+        export PATH=$JAVA_HOME/bin:$PATH
         java -version
         javac -version
         if [[ $(java -version 2>&1) =~ ${VERSIONS[$v]} ]] && [[ $(javac -version 2>&1) =~ ${VERSIONS[$v]} ]]; then
