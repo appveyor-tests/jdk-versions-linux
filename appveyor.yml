@@ -1,0 +1,21 @@
+test_script:
+- sh: |
+    declare JDK_VERSIONS=( "7" "8" "9" )
+    declare -A VERSIONS
+    VERSIONS["7"]="1.7.0"
+    VERSIONS["8"]="1.8.0"
+    VERSIONS["9"]="9-internal"
+    for v in "${JDK_VERSIONS[@]}"; do
+        sudo /usr/sbin/update-java-alternatives --set java-1.${v}.0-openjdk-amd64 ||
+            { echo "[ERROR] Cannot use JDK ${v}." 1>&2; exit 1; }
+        java -version
+        javac -version
+        if [[ $(java -version 2>&1) =~ ${VERSIONS[$v]} ]] && [[ $(javac -version 2>&1) =~ ${VERSIONS[$v]} ]]; then
+            echo "Version is Correct"
+        else
+            echo "[ERROR] Version of JDK is incorrect!" 1>&2;
+            exit 2;
+        fi
+    done
+
+build: off
