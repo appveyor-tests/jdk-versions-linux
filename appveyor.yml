@@ -1,10 +1,11 @@
 test_script:
 - sh: |
-    declare JDK_VERSIONS=( "7" "8" "9" )
+    declare JDK_VERSIONS=( "7" "8" "9" "10" )
     declare -A VERSIONS
     VERSIONS["7"]="1.7.0"
     VERSIONS["8"]="1.8.0"
     VERSIONS["9"]="9-internal"
+    VERSIONS["10"]="(javac|build) 10"
     for v in "${JDK_VERSIONS[@]}"; do
         JVAR=JAVA_HOME_${v}_X64
         export JAVA_HOME=${!JVAR}
