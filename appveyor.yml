@@ -4,8 +4,9 @@ test_script:
     declare -A VERSIONS
     VERSIONS["7"]="1.7.0"
     VERSIONS["8"]="1.8.0"
-    VERSIONS["9"]="9-internal"
+    VERSIONS["9"]="9.0.4"
     VERSIONS["10"]="(javac|build) 10"
+    VERSIONS["11"]="(javac|build) 11"
     for v in "${JDK_VERSIONS[@]}"; do
         JVAR=JAVA_HOME_${v}_X64
         export JAVA_HOME=${!JVAR}
@@ -16,7 +17,7 @@ test_script:
             echo "Version is Correct"
         else
             echo "[ERROR] Version of JDK is incorrect!" 1>&2;
-            exit 2;
+            return 2;
         fi
     done
 
