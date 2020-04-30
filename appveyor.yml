@@ -47,5 +47,6 @@ test_script:
             return 2;
         fi
     done
+- sh: sudo apt-get -y install default-jdk
 
 build: off
