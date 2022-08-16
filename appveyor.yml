@@ -24,7 +24,7 @@ init:
     
 test_script:
 - sh: |
-    declare JDK_VERSIONS=( "7" "8" "9" "10" "11" "12" "13" "14" )
+    declare JDK_VERSIONS=( "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" )
     declare -A VERSIONS
     VERSIONS["7"]="1.7.0"
     VERSIONS["8"]="1.8.0"
